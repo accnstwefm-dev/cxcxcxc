@@ -1,0 +1,247 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --border: #dadce0;
+  --border-focus: #1a73e8;
+  --text: #202124;
+  --text-secondary: #5f6368;
+  --text-hint: #80868b;
+  --accent: #1a73e8;
+  --accent-hover: #1765cc;
+  --error-text: #d93025;
+  --error-bg: #fce8e6;
+  --success-text: #188038;
+  --success-bg: #e6f4ea;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Google Sans", Roboto, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Page layout ── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* ── Card ── */
+.card {
+  width: 100%;
+  max-width: 448px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 48px 40px 36px;
+  animation: fadeIn 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .card { padding: 32px 24px 28px; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Icon ── */
+.icon-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.icon-row svg {
+  color: var(--accent);
+}
+
+/* ── Typography ── */
+.title {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.subtitle {
+  font-size: 14px;
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* ── CAPTCHA image ── */
+.captcha-area {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: #f8f9fa;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.captcha-area img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.refresh-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.refresh-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.refresh-btn.spin svg {
+  animation: rotate 0.5s ease;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Input ── */
+.field-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  letter-spacing: 0.01em;
+}
+
+.field-input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0 14px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--card-bg);
+  outline: none;
+  transition: border-color 0.15s;
+  letter-spacing: 0.15em;
+}
+
+.field-input::placeholder {
+  color: var(--text-hint);
+  letter-spacing: 0.05em;
+}
+
+.field-input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 1px var(--border-focus);
+}
+
+/* ── Button ── */
+.submit-btn {
+  width: 100%;
+  height: 44px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+  letter-spacing: 0.025em;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.submit-btn:active:not(:disabled) {
+  box-shadow: none;
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ── Messages ── */
+.msg {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.msg.error {
+  background: var(--error-bg);
+  color: var(--error-text);
+}
+
+.msg.success {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--text-hint);
+}
+
+/* ── Loading skeleton ── */
+.skeleton {
+  width: 100%;
+  height: 72px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 2px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
