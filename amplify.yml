@@ -2,9 +2,12 @@ version: 1
 frontend:
   phases:
     build:
-      commands: []
+      commands:
+        - mkdir -p .amplify-hosting/static
+        - cp index.html .amplify-hosting/static/index.html
+        - printf '{"version":1,"routes":[{"path":"/*","target":{"kind":"Static"}}],"framework":{"name":"custom","version":"1.0.0"}}' > .amplify-hosting/deploy-manifest.json
   artifacts:
-    baseDirectory: /
+    baseDirectory: .amplify-hosting
     files:
       - '**/*'
   cache:
